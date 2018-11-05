@@ -272,7 +272,6 @@ export default {
                 photo: this.image,
                 scores: answerArr
             }
-            console.log(process.env.API_URL)
             axios.post(process.env.API_URL, postBody)
                 .then(response => {
                     console.log(response)
