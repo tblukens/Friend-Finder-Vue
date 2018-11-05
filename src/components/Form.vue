@@ -272,7 +272,7 @@ export default {
                 photo: this.image,
                 scores: answerArr
             }
-            axios.post(process.env.API_URL, postBody)
+            axios.post("/api/friends", postBody)
                 .then(response => {
                     console.log(response)
                     if (response.status === 200) {
