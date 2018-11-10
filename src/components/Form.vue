@@ -3,184 +3,21 @@
         <div>
             <div class="field is-grouped">
                 <div class="control has-icons-left has-icons-right column is-half">
-                    <input class="input is-primary" type="name" placeholder="First and Last name" v-model="name">
-                    <span class="icon is-medium is-left">
-                        <font-awesome-icon icon="user" />
-                    </span>
-                    <span class="icon is-medium is-right">
-                        <font-awesome-icon icon="check" class="fa-xs" />
-                    </span>
+                    <label for="name">Full Name:</label>
+                    <input class="input is-primary" type="name" name="name" placeholder="First and Last name" v-model="name">
                 </div>
                 <div class="control has-icons-left has-icons-right column is-half">
-                    <input class="input is-primary" type="url" placeholder="Image link" v-model="image">
-                    <span class="icon is-medium is-left">
-                        <font-awesome-icon icon="image" />
-                    </span>
-                    <span class="icon is-medium is-right">
-                        <font-awesome-icon icon="check" />
-                    </span>
+                    <label for="image">Image Link:</label>
+                    <input class="input is-primary" type="url" name="image" placeholder="Image link" v-model="image">
                 </div>
             </div>
-            <div class="field column is-half">
+            <div class="field column is-half" v-for="(question, i) in questionList" :key="i">
                 <div class="left-align col s12">
-                    <h5>1. How comfortable are you with surveys?</h5>
+                    <h5>{{ question }}</h5>
                 </div>
                 <div class="control">
                     <div class="select is-primary">
-                        <select v-model="questions.a1">
-                            <option value="select">Please select...</option>
-                            <option value="1">1 ( least comfortable )</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5 ( most comfortable )</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field column is-half">
-                <div class="left-align col s12">
-                    <h5>2. How comfortable are you with repeat questions?</h5>
-                </div>
-                <div class="control">
-                    <div class="select is-primary">
-                        <select v-model="questions.a2">
-                            <option value="select">Please select...</option>
-                            <option value="1">1 ( least comfortable )</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5 ( most comfortable )</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field column is-half">
-                <div class="left-align col s12">
-                    <h5>3. How comfortable are you with dogs?</h5>
-                </div>
-                <div class="control">
-                    <div class="select is-primary">
-                        <select v-model="questions.a3">
-                            <option value="select">Please select...</option>
-                            <option value="1">1 ( least comfortable )</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5 ( most comfortable )</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field column is-half">
-                <div class="left-align col s12">
-                    <h5>4. How comfortable are you with cats?</h5>
-                </div>
-                <div class="control">
-                    <div class="select is-primary">
-                        <select v-model="questions.a4">
-                            <option value="select">Please select...</option>
-                            <option value="1">1 ( least comfortable )</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5 ( most comfortable )</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field column is-half">
-                <div class="left-align col s12">
-                    <h5>5. How comfortable are you with repeat questions?</h5>
-                </div>
-                <div class="control">
-                    <div class="select is-primary">
-                        <select v-model="questions.a5">
-                            <option value="select">Please select...</option>
-                            <option value="1">1 ( least comfortable )</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5 ( most comfortable )</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field column is-half">
-                <div class="left-align col s12">
-                    <h5>6. How comfortable are you with reptiles?</h5>
-                </div>
-                <div class="control">
-                    <div class="select is-primary">
-                        <select v-model="questions.a6">
-                            <option value="select">Please select...</option>
-                            <option value="1">1 ( least comfortable )</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5 ( most comfortable )</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field column is-half">
-                <div class="left-align col s12">
-                    <h5>7. How comfortable are you with heights?</h5>
-                </div>
-                <div class="control">
-                    <div class="select is-primary">
-                        <select v-model="questions.a7">
-                            <option value="select">Please select...</option>
-                            <option value="1">1 ( least comfortable )</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5 ( most comfortable )</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field column is-half">
-                <div class="left-align col s12">
-                    <h5>8. How comfortable are you with dark places?</h5>
-                </div>
-                <div class="control">
-                    <div class="select is-primary">
-                        <select v-model="questions.a8">
-                            <option value="select">Please select...</option>
-                            <option value="1">1 ( least comfortable )</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5 ( most comfortable )</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field column is-half">
-                <div class="left-align col s12">
-                    <h5>9. How comfortable are you with tight spaces?</h5>
-                </div>
-                <div class="control">
-                    <div class="select is-primary">
-                        <select v-model="questions.a9">
-                            <option value="select">Please select...</option>
-                            <option value="1">1 ( least comfortable )</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5 ( most comfortable )</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field column is-half">
-                <div class="left-align col s12">
-                    <h5>10. How comfortable are you with beer?</h5>
-                </div>
-                <div class="control">
-                    <div class="select is-primary">
-                        <select v-model="questions.a10">
+                        <select v-model="questions[i]">
                             <option value="select">Please select...</option>
                             <option value="1">1 ( least comfortable )</option>
                             <option value="2">2</option>
@@ -232,8 +69,20 @@ export default {
             name: null,
             showModal: false,
             image: null,
-            questions: { a1: "select", a2: "select", a3: "select", a4: "select", a5: "select", a6: "select", a7: "select", a8: "select", a9: "select", a10: "select" },
-            bestMatch: null
+            questions: { 0: "select", 1: "select", 2: "select", 3: "select", 4: "select", 5: "select", 6: "select", 7: "select", 8: "select", 9: "select", },
+            bestMatch: null,
+            questionList: [
+                '1. How comfortable are you with surveys?',
+                '2. How comfortable are you with repeat questions?',
+                '3. How comfortable are you with dogs?',
+                '4. How comfortable are you with cats?',
+                '5. How comfortable are you with repeat questions?',
+                '6. How comfortable are you with reptiles?',
+                '7. How comfortable are you with heights?',
+                '8. How comfortable are you with dark places?',
+                '9. How comfortable are you with tight spaces?',
+                '10. How comfortable are you with beer?',
+            ]
         }
     },
     methods: {
@@ -272,7 +121,7 @@ export default {
                 photo: this.image,
                 scores: answerArr
             }
-            axios.post(process.env.API_URL, postBody)
+            axios.post(process.env.VUE_APP_API_URL, postBody)
                 .then(response => {
                     console.log(response)
                     if (response.status === 200) {
