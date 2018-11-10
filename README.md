@@ -1,29 +1,8 @@
 # FriendFinder
 
-## Project setup
-```
-npm install
-```
+![friend-finder-app](readme.png)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Hello, this is my friend finder app. It's like a dating app, but it finds you a new best friend!
+### You just take a simple 10 question survey and your results are factored against others to find who fits best for you!
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
