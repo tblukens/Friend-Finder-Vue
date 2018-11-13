@@ -43,7 +43,7 @@
             <div class="modal-card">
                 <header class="modal-card-head">
                     <p class="modal-card-title">Your new friend:</p>
-                    <button class="delete" aria-label="close" @click="showModal = false"></button>
+                    <button class="delete" aria-label="close" @click.prevent="showModal = false"></button>
                 </header>
                 <section class="modal-card-body">
                     <div v-if="bestMatch">
@@ -58,89 +58,112 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-    name: "Form",
-    data: () => {
-        return {
-            errors: [],
-            selected: null,
-            name: null,
-            showModal: false,
-            image: null,
-            questions: { 0: "select", 1: "select", 2: "select", 3: "select", 4: "select", 5: "select", 6: "select", 7: "select", 8: "select", 9: "select", },
-            bestMatch: null,
-            questionList: [
-                '1. How comfortable are you with surveys?',
-                '2. How comfortable are you with repeat questions?',
-                '3. How comfortable are you with dogs?',
-                '4. How comfortable are you with cats?',
-                '5. How comfortable are you with repeat questions?',
-                '6. How comfortable are you with reptiles?',
-                '7. How comfortable are you with heights?',
-                '8. How comfortable are you with dark places?',
-                '9. How comfortable are you with tight spaces?',
-                '10. How comfortable are you with beer?',
-            ]
+  name: "Form",
+  data: () => {
+    return {
+      errors: [],
+      selected: null,
+      name: null,
+      showModal: false,
+      image: null,
+      questions: {
+        0: "select",
+        1: "select",
+        2: "select",
+        3: "select",
+        4: "select",
+        5: "select",
+        6: "select",
+        7: "select",
+        8: "select",
+        9: "select"
+      },
+      bestMatch: null,
+      questionList: [
+        "1. How comfortable are you with surveys?",
+        "2. How comfortable are you with repeat questions?",
+        "3. How comfortable are you with dogs?",
+        "4. How comfortable are you with cats?",
+        "5. How comfortable are you with repeat questions?",
+        "6. How comfortable are you with reptiles?",
+        "7. How comfortable are you with heights?",
+        "8. How comfortable are you with dark places?",
+        "9. How comfortable are you with tight spaces?",
+        "10. How comfortable are you with beer?"
+      ]
+    };
+  },
+  methods: {
+    checkForm: function(e) {
+      this.errors = [];
+      if (!this.name) {
+        this.errors.push("Name required.");
+      }
+      if (!this.image) {
+        this.errors.push("Image required.");
+      }
+      let answers = Object.values(this.questions);
+      // console.log(answers)
+      answers.forEach((element, i) => {
+        i++;
+        if (element === "select") {
+          return this.errors.push(`Please select an option for question ${i}`);
+        } else {
+          // console.log(element)
         }
-    },
-    methods: {
-        checkForm: function (e) {
-            this.errors = [];
-            if (!this.name) {
-                this.errors.push('Name required.');
-            }
-            if (!this.image) {
-                this.errors.push('Image required.');
-            }
-            let answers = Object.values(this.questions);
-            // console.log(answers)
-            answers.forEach((element, i) => {
-                i++
-                if (element === "select") {
-                    return this.errors.push(`Please select an option for question ${i}`)
-                } else {
-                    // console.log(element)
-                }
-            });
+      });
 
-            if (this.errors.length === 0) {
-                this.sendForm();
-                return true;
-            }
-            e.preventDefault();
-        },
-        sendForm: function () {
-            let answerArr = Object.values(this.questions)
-            answerArr.forEach(element => {
-                element = parseInt(element)
-            });
-            let postBody = {
-                name: this.name,
-                photo: this.image,
-                scores: answerArr
-            }
-            axios.post("/api/friends", postBody)
-                .then(response => {
-                    console.log(response)
-                    if (response.status === 200) {
-                        this.bestMatch = response.data
-                        console.log(this.bestMatch)
-                        this.showModal = true;
-                        this.name = null
-                        this.image = null
-                        this.questions = { a1: "select", a2: "select", a3: "select", a4: "select", a5: "select", a6: "select", a7: "select", a8: "select", a9: "select", a10: "select" };
-                        return false;
-                    } else {
-                        console.log()
-                    }
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        }
+      if (this.errors.length === 0) {
+        this.sendForm();
+        return false;
+      }
+    },
+    sendForm: function() {
+      let answerArr = Object.values(this.questions);
+      answerArr.forEach(element => {
+        element = parseInt(element);
+      });
+      let postBody = {
+        name: this.name,
+        photo: this.image,
+        scores: answerArr
+      };
+      axios
+        .post("/api/friends", postBody)
+        .then(response => {
+          console.log(response);
+          if (response.status === 200) {
+            this.bestMatch = response.data;
+            console.log(this.bestMatch);
+            this.showModal = true;
+            this.name = null;
+            this.image = null;
+            this.questions = {
+                0: "select",
+              1: "select",
+              2: "select",
+              3: "select",
+              4: "select",
+              5: "select",
+              6: "select",
+              7: "select",
+              8: "select",
+              9: "select"
+            };
+            this.errors = [];
+            return false;
+          } else {
+            console.log();
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
+  }
 };
 </script>
 
